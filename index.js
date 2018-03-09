@@ -13,6 +13,8 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const check = require('check-type').init();
 
+require('colors');
+
 const YamlValidatore = function YamlValidatore(options) {
   this.options = Object.assign({
     log: false,
@@ -128,7 +130,7 @@ YamlValidatore.prototype.loadData = function loadData(filepath, data) {
   catch (error) {
     const lineNumber = error.message.match(/line (\d+)/)[1];
     _self.errored(`Failed to load the Yaml file "${filepath}:${lineNumber}"\n${error.message}`);
-    console.error(`${filepath}:${lineNumber}\n${error.message}`);
+    console.error(`${filepath}:${lineNumber}\n${error.message.red}`);
 
     return null;
   }
