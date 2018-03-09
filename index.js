@@ -220,6 +220,10 @@ YamlValidatore.prototype.report = function report() {
   if (typeof this.options.log === 'string') {
     fs.writeFileSync(this.options.log, this.logs.join('\n'), 'utf8');
   }
+
+  if (this.inValidFilesCount > 0) {
+    process.exit(1);
+  }
 };
 
 module.exports = YamlValidatore;
